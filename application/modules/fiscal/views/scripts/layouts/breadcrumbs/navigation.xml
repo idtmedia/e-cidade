@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+  <breadcrumbs>
+    <inicio>
+      <label>Início</label>
+      <module>fiscal</module>
+      <controller>index</controller>
+      <action>index</action>
+      <pages>
+        <listar_cadastros>
+          <label>Acesso ao Usuário</label>
+          <module>fiscal</module>
+          <controller>usuario-acesso</controller>
+          <action>listar-cadastros</action>
+        </listar_cadastros>
+        <usuario_acesso>
+          <label>Cadastros</label>
+          <uri>#</uri>
+          <pages>
+            <listar_cadastros>
+              <label>Acesso ao Usuário</label>
+              <module>fiscal</module>
+              <controller>usuario-acesso</controller>
+              <action>listar-cadastros</action>
+            </listar_cadastros>
+          </pages>
+        </usuario_acesso>
+        <cadastros>
+          <label>Cadastros</label>
+          <uri>#</uri>
+          <pages>
+            <usuarios>
+              <label>Usuários</label>
+              <uri>#</uri>
+              <pages>
+                <lista>
+                  <label>Solicitações</label>
+                  <module>fiscal</module>
+                  <controller>usuario-eventual</controller>
+                  <action>listar-novos-cadastros</action>
+                </lista>
+              </pages>
+            </usuarios>
+          </pages>
+        </cadastros>
+        <relatorio1>
+          <label>Relatórios</label>
+          <uri></uri>
+          <pages>
+            <comparativo_declaracoes>
+              <label>Comparativo de Declarações</label>
+              <module>fiscal</module>
+              <controller>relatorio3</controller>
+              <action>comparativo-declaracoes</action>
+            </comparativo_declaracoes>
+            <comparativo_retencoes>
+              <label>Comparativo de Retenções</label>
+              <module>fiscal</module>
+              <controller>relatorio4</controller>
+              <action>comparativo-retencoes</action>
+            </comparativo_retencoes>
+            <declaracoes_sem_movimento>
+              <label>Declarações Sem Movimento</label>
+              <module>fiscal</module>
+              <controller>relatorio2</controller>
+              <action>declaracoes-sem-movimento</action>
+            </declaracoes_sem_movimento>
+            <empresas_omissas>
+              <label>Empresas Omissas</label>
+              <module>fiscal</module>
+              <controller>relatorio2</controller>
+              <action>empresas-omissas</action>
+            </empresas_omissas>
+            <evolucao_arrecadacao>
+              <label>Evolução de Arrecadação</label>
+              <module>fiscal</module>
+              <controller>relatorio1</controller>
+              <action>evolucao-arrecadacao</action>
+            </evolucao_arrecadacao>
+            <inconsistencias_declaracoes>
+              <label>Inconsistências de Declarações</label>
+              <module>fiscal</module>
+              <controller>relatorio5</controller>
+              <action>inconsistencias-declaracoes</action>
+            </inconsistencias_declaracoes>
+            <nfse>
+              <label>NFSe Prestador/Tomador</label>
+              <module>fiscal</module>
+              <controller>relatorio6</controller>
+              <action>nfse</action>
+            </nfse>
+            <valores_atividade_servico>
+              <label>Valores Atividade/Serviço</label>
+              <module>fiscal</module>
+              <controller>relatorio1</controller>
+              <action>valores-atividade-servico</action>
+            </valores_atividade_servico>
+          </pages>
+        </relatorio1>
+      </pages>
+    </inicio>
+  </breadcrumbs>
+</configdata>

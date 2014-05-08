@@ -1,0 +1,16 @@
+/BooleanExpressionRecognizer.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/Query.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/QueryEntry.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/QueryHit.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/QueryLexer.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/QueryParser.php/1.4/Thu Apr 25 17:55:35 2013//TV010000
+/QueryParserContext.php/1.4/Thu Apr 25 17:55:36 2013//TV010000
+/QueryParserException.php/1.4/Thu Apr 25 17:55:36 2013//TV010000
+/QueryToken.php/1.4/Thu Apr 25 17:55:36 2013//TV010000
+/Similarity.php/1.4/Thu Apr 25 17:55:36 2013//TV010000
+/Weight.php/1.4/Thu Apr 25 17:55:36 2013//TV010000
+D/Highlighter////
+D/Query////
+D/QueryEntry////
+D/Similarity////
+D/Weight////

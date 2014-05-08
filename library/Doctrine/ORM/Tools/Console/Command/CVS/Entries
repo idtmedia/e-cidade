@@ -1,0 +1,11 @@
+/ConvertDoctrine1SchemaCommand.php/1.1/Thu Jan 31 16:41:23 2013//TV010000
+/ConvertMappingCommand.php/1.1/Thu Jan 31 16:41:23 2013//TV010000
+/EnsureProductionSettingsCommand.php/1.10/Thu Apr 25 17:51:13 2013//TV010000
+/GenerateEntitiesCommand.php/1.1/Thu Jan 31 16:41:23 2013//TV010000
+/GenerateProxiesCommand.php/1.1/Thu Jan 31 16:41:23 2013//TV010000
+/GenerateRepositoriesCommand.php/1.1/Thu Jan 31 16:41:23 2013//TV010000
+/InfoCommand.php/1.1/Thu Jan 31 16:41:24 2013//TV010000
+/RunDqlCommand.php/1.1/Thu Jan 31 16:41:24 2013//TV010000
+/ValidateSchemaCommand.php/1.1/Thu Jan 31 16:41:24 2013//TV010000
+D/ClearCache////
+D/SchemaTool////

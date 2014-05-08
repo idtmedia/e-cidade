@@ -1,0 +1,409 @@
+<?php if (!$this->lHtmlEmbutido) { ?>
+  <html>
+  <head>
+<?php } ?>
+
+  <style type="text/css">
+    <?php if (!$this->lHtmlEmbutido) { ?>
+    body {
+      width: 1200px;
+      margin: 0;
+      font-size: 11px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    <?php } ?>
+
+    table {
+      text-align: center;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table tr td {
+      text-align: left;
+      padding-left: 5px;
+    }
+
+    table tr td.center {
+      text-align: center;
+    }
+
+    table tr td.titulo {
+      padding: 5px;
+      font-weight: bold;
+    }
+
+    table tr td.imagem {
+      width: 120px;
+      height: 120px;
+    }
+
+    table tr td.linha {
+      line-height: 2px;
+      background-color: black;
+    }
+
+    .nfse_cancelada {
+      position: absolute;
+      width: 100%;
+    }
+
+    .nfse_cancelada_img {
+      margin: 30% 10% 0;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    .negrito {
+      font-weight: bold
+    }
+  </style>
+
+<?php if (!$this->lHtmlEmbutido) { ?>
+</head>
+<body>
+<?php } ?>
+
+<?php if ($this->oDadosNota->getIdNotaSubstituta()) { ?>
+  <div class="nfse_cancelada">
+    <img class="nfse_cancelada_img"
+         src="<?php echo $this->baseUrl('/administrativo/img/nfse/tarja_substituida.png') ?>">
+  </div>
+<?php } else if ($this->oDadosNota->getCancelada()) { ?>
+  <div class="nfse_cancelada">
+    <img class="nfse_cancelada_img"
+         src="<?php echo $this->baseUrl('/administrativo/img/nfse/tarja_cancelada.png') ?>">
+  </div>
+<?php } ?>
+
+  <div style="border: #000000 solid 1px;">
+  <table>
+    <tr>
+      <td align="c" class="imagem">
+        <img src="<?php echo $this->baseUrl('/global/img/brasao.jpg') ?>" width="100px" height="100px">
+      </td>
+      <td colspan="4" width="80%" class="center">
+        <b><?php echo $this->oDadosPrefeitura->getNome() ?></b>
+        <br>
+        Secretaria Municipal de Finanças
+        <br>
+        <span class="underline">Central de Tributos</span>
+        <br>
+      <span class="underline">
+      <?php echo $this->oDadosPrefeitura->getEndereco() . ', ' .
+        $this->oDadosPrefeitura->getNumero() . ' - ' .
+        $this->oDadosPrefeitura->getBairro() . ' / ' .
+        $this->oDadosPrefeitura->getMunicipio() . ' - ' .
+        $this->oDadosPrefeitura->getUf() . ' / CEP: ' .
+        $this->oDadosPrefeitura->getCep();
+      ?>
+      </span>
+      </td>
+      <td rowspan="7" valign="center" class="center" style="border: #000000 solid 1px">
+        <table>
+          <tr>
+            <td class="center titulo">Número da Nota</td>
+          </tr>
+          <tr>
+            <td class="center titulo"><?php echo $this->oDadosNota->getNota() ?></td>
+          </tr>
+          <tr>
+            <td class="center titulo">Código de Verificação</td>
+          </tr>
+          <tr>
+            <td class="center titulo"><?php echo $this->oDadosNota->getCod_verificacao() ?></td>
+          </tr>
+          <tr>
+            <td class="center"><img src="/tmp/<?php echo $this->qrcode ?>"></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" class="linha"></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="titulo center">Nota Fiscal de Serviços Eletrônica - NFSe</td>
+    </tr>
+    <tr>
+      <td class="negrito" width="20%">Data / Hora Emissão:</td>
+      <td>
+        <?php echo "{$this->oDadosNota->formatedData()} - {$this->oDadosNota->formatedHora()}" ?>
+      </td>
+      <td class="negrito" width="20%">Período de Competência:</td>
+      <td><?php echo str_pad($this->oDadosNota->getComp(), 7, 0, STR_PAD_LEFT) ?></td>
+    </tr>
+    <tr>
+      <td class="negrito" width="22%">Município Prestação:</td>
+      <td><?php echo $this->oDadosNota->getServicoMunicipio() ?></td>
+      <td class="negrito" width="22%">Reg. Especial Tributação:</td>
+      <td><?php echo $this->oPrestador->getDescricaoRegimeTributario() ?></td>
+    </tr>
+    <tr>
+      <td class="negrito" width="22%">Natureza da Operação:</td>
+      <td>
+        <?php echo Contribuinte_Model_NaturezaOperacao::getById($this->oDadosNota->getNatureza_operacao()) ?>
+      </td>
+      <td class="negrito" width="22%">
+        <?php echo $this->oDadosNotaSubstituida ? 'Número da Nota Substituida:' : NULL ?>
+      </td>
+      <td><?php echo $this->oDadosNotaSubstituida ? $this->oDadosNotaSubstituida->getNota() : NULL ?></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="linha"></td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td colspan="5" class="center negrito">PRESTADOR DE SERVIÇOS</td>
+    </tr>
+    <tr>
+      <td rowspan="6" class="center imagem">
+        <?php if ($this->sLogoPrestador) { ?>
+          <img alt="" width="100px" height="100px" src="<?php echo $this->baseUrl("/tmp/{$this->sLogoPrestador}") ?>">
+        <?php } ?>
+      </td>
+      <td colspan="3">Razão Social</td>
+      <td>CPF/CNPJ</td>
+    </tr>
+    <tr>
+      <td colspan="3"><b><?php echo $this->oDadosNota->getP_razao_social() ?></b></td>
+      <td><b><?php echo DBSeller_Helper_Number_Format::maskCPF_CNPJ($this->oDadosNota->getP_cnpjcpf()) ?></b></td>
+    </tr>
+    <tr>
+      <td width="25%">Inscrição Municipal</td>
+      <td>Fone/Fax</td>
+      <td>Simples Nacional</td>
+      <td>Inscrição Estadual</td>
+    </tr>
+    <tr>
+      <td width="80px"><b><?php echo $this->oDadosNota->getP_im() ?></b></td>
+      <td><?php echo DBSeller_Helper_Number_Format::maskPhoneNumber($this->oDadosNota->getP_telefone()) ?></td>
+      <td><?php echo $this->oPrestador->getDescricaoOptanteSimples() ?></td>
+      <td><?php $this->oDadosNota->getP_ie() ?></td>
+    </tr>
+    <tr>
+      <td colspan="4">Endereço</td>
+    </tr>
+    <tr>
+      <td colspan="2"><?php echo $this->oDadosNota->getP_endereco() . ', ' .
+          $this->oDadosNota->getP_endereco_numero() . ' ' .
+          $this->oDadosNota->getP_endereco_comp() ?>
+      </td>
+      <td>CEP: <?php echo $this->oDadosNota->getP_cep() ?></td>
+      <td><?php echo $this->oDadosNota->getPrestadorMunicipio() . ' / ' . $this->oDadosNota->getP_uf() ?></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="linha"></td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td colspan="3" class="center"><b>TOMADOR DE SERVIÇOS</b></td>
+    </tr>
+    <tr>
+      <td colspan="2" width="200px">Razão Social</td>
+      <td>CPF/CNPJ</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <?php if ($this->oDadosNota->getT_razao_social()) { ?>
+          <b><?php echo $this->oDadosNota->getT_razao_social() ?></b>
+        <?php } else { ?>
+          Não identificado
+        <?php } ?>
+      </td>
+      <td><b><?php echo DBSeller_Helper_Number_Format::maskCPF_CNPJ($this->oDadosNota->getT_cnpjcpf()) ?></b></td>
+    </tr>
+    <tr>
+      <td width="25%">Inscrição Municipal</td>
+      <td>Fone/Fax</td>
+      <td>Email</td>
+    </tr>
+    <tr>
+      <td><b><?php echo $this->oDadosNota->getT_im() ?></b></td>
+      <td><?php echo DBSeller_Helper_Number_Format::maskPhoneNumber($this->oDadosNota->getT_telefone()) ?></td>
+      <td><?php echo $this->oDadosNota->getT_email() ?></td>
+    </tr>
+    <tr>
+      <td colspan="3">Endereço</td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <?php if ($this->oDadosNota->getT_cnpjcpf()) { ?>
+          <?php echo $this->oDadosNota->getT_endereco() . ', ' .
+            $this->oDadosNota->getT_endereco_numero() . ' ' .
+            $this->oDadosNota->getT_endereco_comp() . ' ' .
+            $this->oDadosNota->getT_cep() . ' - ' .
+            $this->oDadosNota->getTomadorMunicipio() . ' / ' .
+            $this->oDadosNota->getT_uf(); ?>
+        <?php } ?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3" class="linha"></td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td colspan="2" class="center"><b>DADOS COMPLEMENTARES</b></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        Código Tribuitação Municipio:
+        <?php
+        echo "{$this->oDadosNota->getS_dados_item_lista_servico()} - {$this->oDadosNota->getDescricaoListaServico()}";
+        ?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>
+        CNAE:
+        <?php echo "{$this->oDadosNota->getS_dados_cod_cnae()}"; ?> -
+        <?php
+        $aServico = Contribuinte_Model_Servico::getByCodServico($this->oDadosNota->getS_dados_cod_tributacao());
+        $oServico = reset($aServico);
+        echo ($oServico instanceof Contribuinte_Model_Servico) ? $oServico->attr('desc_cnae') : NULL;
+        ?>
+      </td>
+    </tr>
+    <?php if ($this->oDadosNota->getS_codigo_obra() || $this->oDadosNota->getS_art()) { ?>
+      <tr>
+        <td>Construção Civil - Obra: <?php echo $this->oDadosNota->getS_codigo_obra() ?></td>
+        <td width="40%">ART: <?php echo $this->oDadosNota->getS_art() ?></td>
+      </tr>
+      <tr>
+        <td colspan="2">&nbsp;</td>
+      </tr>
+    <?php } ?>
+    <tr>
+      <td class="linha" colspan="2"></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="center destacado titulo">DESCRIMINAÇÃO DOS SERVIÇOS</td>
+    </tr>
+    <tr>
+      <td colspan="2" height="130px" style="vertical-align: top;">
+        <?php echo $this->oDadosNota->getS_dados_discriminacao() ?>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="linha"></td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td colspan="6" class="center">
+        <b>
+          VALOR TOTAL DE SERVIÇOS = <?php echo number_format($this->oDadosNota->getS_vl_servicos(), 2, ',', '.') ?>
+        </b>
+      </td>
+    <tr>
+      <td colspan="6">&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="linha" colspan="6"></td>
+    </tr>
+    <tr>
+      <td>PIS (R$)</td>
+      <td>COFINS(R$)</td>
+      <td>INSS (R$)</td>
+      <td>IR (R$)</td>
+      <td>CSLL (R$)</td>
+      <td>Outras Retenções (R$)</td>
+    </tr>
+    <tr>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_pis(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_cofins(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_inss(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_ir(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_csll(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_outras_retencoes(), 2, ',', '.') ?></td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td colspan="5" style="line-height: 1px; background-color: #000000;"></td>
+    </tr>
+    <tr>
+      <td colspan="2">Deduções</td>
+      <td>Desconto Incondicionado</td>
+      <td>Base de Cálculo</td>
+      <td>Alíquota %</td>
+    </tr>
+    <tr>
+      <td colspan="2"><?php echo number_format($this->oDadosNota->getS_vl_deducoes(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_desc_incondicionado(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_bc(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_aliquota(), 2, ',', '.') ?></td>
+    </tr>
+    <tr>
+      <td>ISS Prestador (R$)</td>
+      <td>ISS Tomador (R$)</td>
+      <td>Desconto Condicionado</td>
+      <td>Valor Total da Nota (R$)</td>
+      <td>Valor Liquido (R$)</td>
+    </tr>
+    <tr>
+      <?php if ($this->oDadosNota->getS_dados_iss_retido() == Contribuinte_Model_Nota::PRESTADOR_RETEM_ISS &&
+        !$this->oDadosNota->getEmite_guia()
+      ) {
+        ?>
+        <td><?php echo number_format(0, 2, ',', '.') ?></td>
+        <td><?php echo number_format(0, 2, ',', '.') ?></td>
+      <?php } else if ($this->oDadosNota->getS_dados_iss_retido() == Contribuinte_Model_Nota::TOMADOR_RETEM_ISS) { ?>
+        <td><?php echo number_format(0, 2, ',', '.') ?></td>
+        <td><?php echo number_format($this->oDadosNota->getS_vl_iss(), 2, ',', '.') ?></td>
+      <?php } else { ?>
+        <td><?php echo number_format($this->oDadosNota->getS_vl_iss(), 2, ',', '.') ?></td>
+        <td><?php echo number_format(0, 2, ',', '.') ?></td>
+      <?php } ?>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_condicionado(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getS_vl_servicos(), 2, ',', '.') ?></td>
+      <td><?php echo number_format($this->oDadosNota->getVl_liquido_nfse(), 2, ',', '.') ?></td>
+    </tr>
+    <tr>
+      <td colspan="5" class="linha"></td>
+    </tr>
+  </table>
+  <br>
+  <?php  if ($this->oDadosPrefeitura->getInformacoesComplementaresNfse() ||
+    $this->oDadosNota->getS_informacoes_complementares()
+  ) {
+    ?>
+    <table>
+      <tr>
+        <td class="titulo">OUTRAS INFORMAÇÕES</td>
+      </tr>
+      <tr>
+        <td>
+          <?php echo $this->oDadosPrefeitura->getInformacoesComplementaresNfse() ?>
+          <br>
+          <?php echo $this->oDadosNota->getS_informacoes_complementares() ?>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="linha"></td>
+      </tr>
+    </table>
+  <?php } ?>
+  </div>
+
+<?php if (!$this->lHtmlEmbutido) { ?>
+  </body>
+  </html>
+<?php } ?>

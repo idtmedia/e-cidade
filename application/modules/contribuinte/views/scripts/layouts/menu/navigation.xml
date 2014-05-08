@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+  <nav>
+    <nfse>
+      <label>NFSe</label>
+      <uri />
+      <pages>
+        <consulta>
+          <label>Consulta</label>
+          <module>contribuinte</module>
+          <controller>nota</controller>
+          <action>consulta</action>
+        </consulta>
+        <emissao>
+          <label>Emissão</label>
+          <module>contribuinte</module>
+          <controller>nota</controller>
+          <action>index</action>
+        </emissao>
+      </pages>
+    </nfse>
+    <rps>
+      <label>RPS</label>
+      <uri />
+      <pages>
+        <emissao>
+          <label>Emissão</label>
+          <module>contribuinte</module>
+          <controller>rps</controller>
+          <action>index</action>
+        </emissao>
+        <requisicao>
+          <label>Requisição</label>
+          <module>contribuinte</module>
+          <controller>rps</controller>
+          <action>requisicao</action>
+        </requisicao>
+        <rps_importacao>
+          <label>Importação por Arquivo</label>
+          <module>contribuinte</module>
+          <controller>importacao-arquivo</controller>
+          <action>rps</action>
+        </rps_importacao>
+      </pages>
+    </rps>
+    <dms>
+      <label>DMS</label>
+      <uri/>
+      <pages>
+        <entrada>
+          <label>Serviços Tomados</label>
+          <module>contribuinte</module>
+          <controller>dms</controller>
+          <action>emissao-manual-entrada-competencia</action>
+        </entrada>
+        <saida>
+          <label>Serviços Prestados</label>
+          <module>contribuinte</module>
+          <controller>dms</controller>
+          <action>emissao-manual-saida-competencia</action>
+        </saida>
+        <importacao>
+          <label>Importação por Arquivo</label>
+          <module>contribuinte</module>
+          <controller>dms</controller>
+          <action>importacao</action>
+        </importacao>
+        <requisicao>
+          <label>Requisição</label>
+          <module>contribuinte</module>
+          <controller>dms</controller>
+          <action>requisicao</action>
+        </requisicao>
+      </pages>
+    </dms>
+    <guia>
+      <label>Guia</label>
+      <uri/>
+      <pages>
+        <dms_guia>
+          <label>DMS</label>
+          <module></module>
+          <controller></controller>
+          <action></action>
+          <pages>
+            <consulta_dms>
+              <label>Consulta</label>
+              <module>contribuinte</module>
+              <controller>guia</controller>
+              <action>consulta-emissao-dms</action>
+            </consulta_dms>
+            <geracao_dms>
+              <label>Geração (Serviços Tomados)</label>
+              <module>contribuinte</module>
+              <controller>guia</controller>
+              <action>emissao-dms-entrada</action>
+            </geracao_dms>
+            <geracao_dms_saida>
+              <label>Geração (Serviços Prestados)</label>
+              <module>contribuinte</module>
+              <controller>guia</controller>
+              <action>emissao-dms</action>
+            </geracao_dms_saida>
+          </pages>
+        </dms_guia>
+        <nota_guia>
+          <label>NFSe</label>
+          <module/>
+          <controller/>
+          <action/>
+          <pages>
+            <consulta_nfse>
+              <label>Consulta</label>
+              <module>contribuinte</module>
+              <controller>guia</controller>
+              <action>consulta-emissao-nota</action>
+            </consulta_nfse>
+            <geracao_nfse>
+              <label>Geração</label>
+              <module>contribuinte</module>
+              <controller>guia</controller>
+              <action>index</action>
+            </geracao_nfse>
+          </pages>
+        </nota_guia>
+        <declaracao_sem_movimento>
+          <label>Declaração sem Movimento</label>
+          <module>contribuinte</module>
+          <controller>guia</controller>
+          <action>declaracao-sem-movimento</action>
+        </declaracao_sem_movimento>
+      </pages>
+    </guia>
+    <relatorio>
+      <label>Relatórios</label>
+      <uri></uri>
+      <pages>
+        <livro_fiscal>
+          <label>Livro Fiscal</label>
+          <module>contribuinte</module>
+          <controller>relatorio</controller>
+          <action>livro-fiscal</action>
+        </livro_fiscal>
+        <nfse>
+          <label>NFSe Prestador/Tomador</label>
+          <module>contribuinte</module>
+          <controller>relatorio</controller>
+          <action>nfse</action>
+        </nfse>
+      </pages>  
+    </relatorio>
+  </nav>
+</configdata>

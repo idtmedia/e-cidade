@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="db_logotipo span7">
+    <?php echo $this->partial('layouts/logotipo.phtml', 'auth') ?>
+  </div>
+  
+  <div class="db_links span3">
+    <ul>
+      <li>
+        <a href="<?php echo $this->baseUrl('/auth/login') ?>" title="<?php echo $this->translate->_('Login') ?>">
+          <?php echo $this->translate->_('Login') ?>
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo $this->baseUrl('/default/cadastro-eventual/') ?>" 
+           title="<?php echo $this->translate->_('Cadastre-se') ?>">
+          <?php echo $this->translate->_('Cadastre-se') ?>
+        </a>
+      </li>
+      <li>
+        <a href="<?php echo $this->baseUrl('/auth/nfse/autenticar') ?>" 
+           title="<?php echo $this->translate->_('Verificar NFSe') ?>">
+          <?php echo $this->translate->_('Verificar NFSe') ?>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="db_informacoes span7">
+    <div class="db_informacoes_texto">
+      <?php echo $this->partial('helpers/informacao.phtml', 'auth', array('translate' => $this->translate)) ?>
+    </div>
+    
+    <div class="db_informacoes_links">
+      <?php echo $this->partial('helpers/documentacao.phtml', 'auth', array('translate' => $this->translate)) ?>
+    </div>
+  </div>
+  
+  <div class="db_form span3">
+    <fieldset>
+      <legend><?php echo $this->translate->_('Recuperação de Senha') ?></legend>
+      <?php echo $this->oForm ?>
+    </fieldset>
+    
+    <div id="error-login" class="db_form_error alert alert-block alert-error slide up no-display"> 
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <h4 class="alert-heading"><?php echo $this->translate->_('Não foi possível recuperar:') ?></h4>
+      <br>
+      <ul class="error-login-content"></ul>
+    </div>
+  </div>
+</div>

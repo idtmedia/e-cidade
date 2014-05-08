@@ -1,0 +1,19 @@
+/BaseUserService.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/ConferenceCall.php/1.3/Thu Apr 25 17:55:46 2013//TV010000
+/Credential.php/1.3/Thu Apr 25 17:55:46 2013//TV010000
+/Exception.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/IpLocation.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/LocalSearch.php/1.3/Thu Apr 25 17:55:46 2013//TV010000
+/SecurityTokenServer.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/SendSms.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/SmsValidation.php/1.4/Thu Apr 25 17:55:46 2013//TV010000
+/VoiceCall.php/1.3/Thu Apr 25 17:55:46 2013//TV010000
+D/BaseUserService////
+D/Client////
+D/ConferenceCall////
+D/IpLocation////
+D/LocalSearch////
+D/Request////
+D/Response////
+D/SecurityTokenServer////
+D/Wsdl////

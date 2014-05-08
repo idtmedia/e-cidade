@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/soap/http" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:ii="http://nfse.local/webservice/index/producao" targetNamespace="http://nfse.local/webservice/index/producao">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://nfse.local/webservice/index/producao/">
+      <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://localhost/teste_webservice/xmldsig-core-schema.xsd"/>
+      <xsd:simpleType name="tsNumeroNfse">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+          <xsd:totalDigits value="15"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoVerificacao">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="9"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsStatusRps">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsStatusNfse">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNaturezaOperacao">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2|3|4|5|6"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsRegimeEspecialTributacao">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2|3|4|5|6"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsSimNao">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNumeroRps">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+          <xsd:totalDigits value="15"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsSerieRps">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsTipoRps">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2|3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsOutrasInformacoes">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="255"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsValor">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="15"/>
+          <xsd:fractionDigits value="2"/>
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsItemListaServico">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="5"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoCnae">
+        <xsd:restriction base="xsd:int">
+          <xsd:totalDigits value="7"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoTributacao">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="20"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsAliquota">
+        <xsd:restriction base="xsd:decimal">
+          <xsd:totalDigits value="5"/>
+          <xsd:fractionDigits value="4"/>
+          <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsDiscriminacao">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="2000"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoMunicipioIbge">
+        <xsd:restriction base="xsd:int">
+          <xsd:totalDigits value="7"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsInscricaoMunicipal">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="15"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsRazaoSocial">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="115"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNomeFantasia">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="60"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCnpj">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="14"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsEndereco">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="125"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNumeroEndereco">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="10"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsComplementoEndereco">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="60"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsBairro">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="60"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsUf">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="2"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCep">
+        <xsd:restriction base="xsd:int">
+          <xsd:totalDigits value="8"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsEmail">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="80"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsTelefone">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="11"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCpf">
+        <xsd:restriction base="xsd:string">
+          <xsd:length value="11"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsIndicacaoCpfCnpj">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2|3"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoObra">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="15"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsArt">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="15"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNumeroLote">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+          <xsd:totalDigits value="15"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsNumeroProtocolo">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="50"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsSituacaoLoteRps">
+        <xsd:restriction base="xsd:byte">
+          <xsd:pattern value="1|2|3|4"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsQuantidadeRps">
+        <xsd:restriction base="xsd:int"/>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoMensagemAlerta">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="4"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsDescricaoMensagemAlerta">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="200"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsCodigoCancelamentoNfse">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="4"/>
+          <xsd:minLength value="1"/>
+          <xsd:whiteSpace value="collapse"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="tsIdTag">
+        <xsd:restriction base="xsd:string">
+          <xsd:maxLength value="255"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="tcCpfCnpj">
+        <xsd:all>
+          <xsd:element name="Cpf" type="ii:tsCpf"/>
+          <xsd:element name="Cnpj" type="ii:tsCnpj"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcEndereco">
+        <xsd:all>
+          <xsd:element name="Endereco" type="ii:tsEndereco"/>
+          <xsd:element name="Numero" type="ii:tsNumeroEndereco"/>
+          <xsd:element name="Complemento" type="ii:tsComplementoEndereco"/>
+          <xsd:element name="Bairro" type="ii:tsBairro"/>
+          <xsd:element name="CodigoMunicipio" type="ii:tsCodigoMunicipioIbge"/>
+          <xsd:element name="Uf" type="ii:tsUf"/>
+          <xsd:element name="Cep" type="ii:tsCep"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcContato">
+        <xsd:all>
+          <xsd:element name="Telefone" type="ii:tsTelefone"/>
+          <xsd:element name="Email" type="ii:tsEmail"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoOrgaoGerador">
+        <xsd:all>
+          <xsd:element name="CodigoMunicipio" type="ii:tsCodigoMunicipioIbge"/>
+          <xsd:element name="Uf" type="ii:tsUf"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoRps">
+        <xsd:all>
+          <xsd:element name="Numero" type="ii:tsNumeroRps"/>
+          <xsd:element name="Serie" type="ii:tsSerieRps"/>
+          <xsd:element name="Tipo" type="ii:tsTipoRps"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoPrestador">
+        <xsd:all>
+          <xsd:element name="Cnpj" type="ii:tsCnpj"/>
+          <xsd:element name="InscricaoMunicipal" type="ii:tsInscricaoMunicipal"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoTomador">
+        <xsd:all>
+          <xsd:element name="CpfCnpj" type="ii:tcCpfCnpj"/>
+          <xsd:element name="InscricaoMunicipal" type="ii:tsInscricaoMunicipal"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcDadosTomador">
+        <xsd:all>
+          <xsd:element name="IdentificacaoTomador" type="ii:tcIdentificacaoTomador"/>
+          <xsd:element name="RazaoSocial" type="ii:tsRazaoSocial"/>
+          <xsd:element name="Endereco" type="ii:tcEndereco"/>
+          <xsd:element name="Contato" type="ii:tcContato"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoIntermediarioServico">
+        <xsd:all>
+          <xsd:element name="RazaoSocial" type="ii:tsRazaoSocial"/>
+          <xsd:element name="CpfCnpj" type="ii:tcCpfCnpj"/>
+          <xsd:element name="InscricaoMunicipal" type="ii:tsInscricaoMunicipal"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcValores">
+        <xsd:all>
+          <xsd:element name="ValorServicos" type="ii:tsValor"/>
+          <xsd:element name="ValorDeducoes" type="ii:tsValor"/>
+          <xsd:element name="ValorPis" type="ii:tsValor"/>
+          <xsd:element name="ValorCofins" type="ii:tsValor"/>
+          <xsd:element name="ValorInss" type="ii:tsValor"/>
+          <xsd:element name="ValorIr" type="ii:tsValor"/>
+          <xsd:element name="ValorCsll" type="ii:tsValor"/>
+          <xsd:element name="IssRetido" type="ii:tsSimNao"/>
+          <xsd:element name="ValorIss" type="ii:tsValor"/>
+          <xsd:element name="ValorIssRetido" type="ii:tsValor"/>
+          <xsd:element name="OutrasRetencoes" type="ii:tsValor"/>
+          <xsd:element name="BaseCalculo" type="ii:tsValor"/>
+          <xsd:element name="Aliquota" type="ii:tsAliquota"/>
+          <xsd:element name="ValorLiquidoNfse" type="ii:tsValor"/>
+          <xsd:element name="DescontoIncondicionado" type="ii:tsValor"/>
+          <xsd:element name="DescontoCondicionado" type="ii:tsValor"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcDadosServico">
+        <xsd:all>
+          <xsd:element name="Valores" type="ii:tcValores"/>
+          <xsd:element name="ItemListaServico" type="ii:tsItemListaServico"/>
+          <xsd:element name="CodigoCnae" type="ii:tsCodigoCnae"/>
+          <xsd:element name="CodigoTributacaoMunicipio" type="ii:tsCodigoTributacao"/>
+          <xsd:element name="Discriminacao" type="ii:tsDiscriminacao"/>
+          <xsd:element name="CodigoMunicipio" type="ii:tsCodigoMunicipioIbge"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcDadosConstrucaoCivil">
+        <xsd:all>
+          <xsd:element name="CodigoObra" type="ii:tsCodigoObra"/>
+          <xsd:element name="Art" type="ii:tsArt"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcDadosPrestador">
+        <xsd:all>
+          <xsd:element name="IdentificacaoPrestador" type="ii:tcIdentificacaoPrestador"/>
+          <xsd:element name="RazaoSocial" type="ii:tsRazaoSocial"/>
+          <xsd:element name="NomeFantasia" type="ii:tsNomeFantasia"/>
+          <xsd:element name="Endereco" type="ii:tcEndereco"/>
+          <xsd:element name="Contato" type="ii:tcContato"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcInfRps">
+        <xsd:all>
+          <xsd:element name="IdentificacaoRps" type="ii:tcIdentificacaoRps"/>
+          <xsd:element name="DataEmissao" type="xsd:dateTime"/>
+          <xsd:element name="NaturezaOperacao" type="ii:tsNaturezaOperacao"/>
+          <xsd:element name="RegimeEspecialTributacao" type="ii:tsRegimeEspecialTributacao"/>
+          <xsd:element name="OptanteSimplesNacional" type="ii:tsSimNao"/>
+          <xsd:element name="IncentivadorCultural" type="ii:tsSimNao"/>
+          <xsd:element name="Status" type="ii:tsStatusRps"/>
+          <xsd:element name="RpsSubstituido" type="ii:tcIdentificacaoRps"/>
+          <xsd:element name="Servico" type="ii:tcDadosServico"/>
+          <xsd:element name="Prestador" type="ii:tcIdentificacaoPrestador"/>
+          <xsd:element name="Tomador" type="ii:tcDadosTomador"/>
+          <xsd:element name="IntermediarioServico" type="ii:tcIdentificacaoIntermediarioServico"/>
+          <xsd:element name="ConstrucaoCivil" type="ii:tcDadosConstrucaoCivil"/>
+          <xsd:element name="id" type="ii:tsIdTag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcRps">
+        <xsd:all>
+          <xsd:element name="InfRps" type="ii:tcInfRps"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcIdentificacaoNfse">
+        <xsd:all>
+          <xsd:element name="Numero" type="ii:tsNumeroNfse"/>
+          <xsd:element name="Cnpj" type="ii:tsCnpj"/>
+          <xsd:element name="InscricaoMunicipal" type="ii:tsInscricaoMunicipal"/>
+          <xsd:element name="CodigoMunicipio" type="ii:tsCodigoMunicipioIbge"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcInfNfse">
+        <xsd:all>
+          <xsd:element name="Numero" type="ii:tsNumeroNfse"/>
+          <xsd:element name="CodigoVerificacao" type="ii:tsCodigoVerificacao"/>
+          <xsd:element name="DataEmissao" type="xsd:dateTime"/>
+          <xsd:element name="IdentificacaoRps" type="ii:tcIdentificacaoRps"/>
+          <xsd:element name="DataEmissaoRps" type="xsd:date"/>
+          <xsd:element name="NaturezaOperacao" type="ii:tsNaturezaOperacao"/>
+          <xsd:element name="RegimeEspecialTributacao" type="ii:tsRegimeEspecialTributacao"/>
+          <xsd:element name="OptanteSimplesNacional" type="ii:tsSimNao"/>
+          <xsd:element name="IncentivadorCultural" type="ii:tsSimNao"/>
+          <xsd:element name="Competencia" type="xsd:dateTime"/>
+          <xsd:element name="NfseSubstituida" type="ii:tsNumeroNfse"/>
+          <xsd:element name="OutrasInformacoes" type="ii:tsOutrasInformacoes"/>
+          <xsd:element name="Servico" type="ii:tcDadosServico"/>
+          <xsd:element name="ValorCredito" type="ii:tsValor"/>
+          <xsd:element name="PrestadorServico" type="ii:tcDadosPrestador"/>
+          <xsd:element name="TomadorServico" type="ii:tcDadosTomador"/>
+          <xsd:element name="IntermediarioServico" type="ii:tcIdentificacaoIntermediarioServico"/>
+          <xsd:element name="OrgaoGerador" type="ii:tcIdentificacaoOrgaoGerador"/>
+          <xsd:element name="ContrucaoCivil" type="ii:tcDadosConstrucaoCivil"/>
+          <xsd:element name="id" type="ii:tsIdTag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcNfse">
+        <xsd:all>
+          <xsd:element name="InfNfse" type="ii:tcInfNfse"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcInfPedidoCancelamento">
+        <xsd:all>
+          <xsd:element name="IdentificacaoNfse" type="ii:tcIdentificacaoNfse"/>
+          <xsd:element name="CodigoCancelamento" type="ii:tsCodigoCancelamentoNfse"/>
+          <xsd:element name="id" type="ii:tsIdTag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcPedidoCancelamento">
+        <xsd:all>
+          <xsd:element name="InfPedidoCancelamento" type="ii:tcInfPedidoCancelamento"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcConfirmacaoCancelamento">
+        <xsd:all>
+          <xsd:element name="Pedido" type="ii:tcPedidoCancelamento"/>
+          <xsd:element name="DataHoraCancelamento" type="xsd:dateTime"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcCancelamentoNfse">
+        <xsd:all>
+          <xsd:element name="Confirmacao" type="ii:tcConfirmacaoCancelamento"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcInfSubstituicaoNfse">
+        <xsd:all>
+          <xsd:element name="NfseSubstituidora" type="ii:tsNumeroNfse"/>
+          <xsd:element name="id" type="ii:tsIdTag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcSubstituicaoNfse">
+        <xsd:all>
+          <xsd:element name="SubstituicaoNfse" type="ii:tcInfSubstituicaoNfse"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcCompNfse">
+        <xsd:all>
+          <xsd:element name="Nfse" type="ii:tcNfse"/>
+          <xsd:element name="NfseCancelamento" type="ii:tcCancelamentoNfse"/>
+          <xsd:element name="NfseSubstituicao" type="ii:tcSubstituicaoNfse"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ListaMensagemRetorno">
+        <xsd:all>
+          <xsd:element name="array"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcMensagemRetorno">
+        <xsd:all>
+          <xsd:element name="Codigo" type="ii:tsCodigoMensagemAlerta"/>
+          <xsd:element name="Mensagem" type="ii:tsDescricaoMensagemAlerta"/>
+          <xsd:element name="Correcao" type="ii:tsDescricaoMensagemAlerta"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcMensagemRetornoLote">
+        <xsd:all>
+          <xsd:element name="IdentificacaoRps" type="ii:tcIdentificacaoRps"/>
+          <xsd:element name="Codigo" type="ii:tsCodigoMensagemAlerta"/>
+          <xsd:element name="Mensagem" type="ii:tsDescricaoMensagemAlerta"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="tcLoteRps">
+        <xsd:all>
+          <xsd:element name="NumeroLote" type="ii:tsNumeroLote"/>
+          <xsd:element name="Cnpj" type="ii:tsCnpj"/>
+          <xsd:element name="InscricaoMunicipal" type="ii:tsInscricaoMunicipal"/>
+          <xsd:element name="QuantidadeRps" type="ii:tsQuantidadeRps"/>
+          <xsd:element name="ListaRps">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="Rps" type="ii:tcRps"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="id" type="ii:tsIdTag"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="EnviarLoteRpsResposta">
+        <xsd:all>
+          <xsd:element name="NumeroLote" type="ii:tsNumeroLote"/>
+          <xsd:element name="DataRecebimento" type="xsd:dateTime"/>
+          <xsd:element name="Protocolo" type="ii:tsNumeroProtocolo"/>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="EnviarLoteRpsEnvio">
+        <xsd:all>
+          <xsd:element refer="dsig:Signature" name="Signature"/>
+          <xsd:element name="LoteRps" type="ii:tcLoteRps"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarSituacaoLoteRpsResposta">
+        <xsd:all>
+          <xsd:element name="NumeroLote" type="ii:tsNumeroLote"/>
+          <xsd:element name="Situacao" type="ii:tsSituacaoLoteRps"/>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarSituacaoLoteRpsEnvio">
+        <xsd:all>
+          <xsd:element name="Prestador" type="ii:tcIdentificacaoPrestador"/>
+          <xsd:element name="Protocolo" type="ii:tsNumeroProtocolo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarNfseRpsResposta">
+        <xsd:all>
+          <xsd:element name="CompNfse" type="ii:tcCompNfse"/>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarNfseRpsEnvio">
+        <xsd:all>
+          <xsd:element name="IdentificacaoRps" type="ii:tcIdentificacaoRps"/>
+          <xsd:element name="Prestador" type="ii:tcIdentificacaoPrestador"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarNfseResposta">
+        <xsd:all>
+          <xsd:element name="ListaNfse">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="CompNfse" type="ii:tcCompNfse"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarNfseEnvio">
+        <xsd:all>
+          <xsd:element name="Prestador" type="ii:tcIdentificacaoPrestador"/>
+          <xsd:element name="NumeroNfse" type="ii:tsNumeroNfse"/>
+          <xsd:element name="PeriodoEmissao">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="DataInicial" type="xsd:date"/>
+                <xsd:element name="DataFinal" type="xsd:date"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="Tomador" type="ii:tcIdentificacaoTomador"/>
+          <xsd:element name="IntermediarioServico" type="ii:tcIdentificacaoIntermediarioServico"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarLoteRpsResposta">
+        <xsd:all>
+          <xsd:element name="ListaNfse">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="CompNfse" type="ii:tcCompNfse"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarLoteRpsEnvio">
+        <xsd:all>
+          <xsd:element name="Prestador" type="ii:tcIdentificacaoPrestador"/>
+          <xsd:element name="Protocolo" type="ii:tsNumeroProtocolo"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="CancelarNfseResposta">
+        <xsd:all>
+          <xsd:element name="Cancelamento" type="ii:tcCancelamentoNfse"/>
+          <xsd:element name="ListaMensagemRetorno">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="MensagemRetorno" type="ii:tcMensagemRetorno"/>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="CancelarNfseEnvio">
+        <xsd:all>
+          <xsd:element name="Pedido" type="ii:tcPedidoCancelamento"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RecepcionarLoteRpsRequest">
+    <wsdl:part name="EnviarLoteRpsEnvio" type="ii:EnviarLoteRpsEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="RecepcionarLoteRpsResponse">
+    <wsdl:part name="EnviarLoteRpsResposta" type="ii:EnviarLoteRpsResposta"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarSituacaoLoteRpsRequest">
+    <wsdl:part name="ConsultarSituacaoLoteRpsEnvio" type="ii:ConsultarSituacaoLoteRpsEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarSituacaoLoteRpsResponse">
+    <wsdl:part name="ConsultarSituacaoLoteRpsResposta" type="ii:ConsultarSituacaoLoteRpsResposta"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarNfsePorRpsRequest">
+    <wsdl:part name="ConsultarNfseRpsEnvio" type="ii:ConsultarNfseRpsEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarNfsePorRpsResponse">
+    <wsdl:part name="ConsultarNfseRpsResposta" type="ii:ConsultarNfseRpsResposta"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarNfseRequest">
+    <wsdl:part name="ConsultarNfseEnvio" type="ii:ConsultarNfseEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarNfseResponse">
+    <wsdl:part name="ConsultarNfseResposta" type="ii:ConsultarNfseResposta"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarLoteRpsRequest">
+    <wsdl:part name="ConsultarLoteRpsEnvio" type="ii:ConsultarLoteRpsEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarLoteRpsResponse">
+    <wsdl:part name="ConsultarLoteRpsResposta" type="ii:ConsultarLoteRpsResposta"/>
+  </wsdl:message>
+  <wsdl:message name="CancelarNfseRequest">
+    <wsdl:part name="CancelarNfseEnvio" type="ii:CancelarNfseEnvio"/>
+  </wsdl:message>
+  <wsdl:message name="CancelarNfseResponse">
+    <wsdl:part name="CancelarNfseResposta" type="ii:CancelarNfseResposta"/>
+  </wsdl:message>
+  <wsdl:portType name="IssIntelPort">
+    <wsdl:operation name="RecepcionarLoteRps">
+      <wsdl:input message="ii:RecepcionarLoteRpsRequest"/>
+      <wsdl:output message="ii:RecepcionarLoteRpsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarSituacaoLoteRps">
+      <wsdl:input message="ii:ConsultarSituacaoLoteRpsRequest"/>
+      <wsdl:output message="ii:ConsultarSituacaoLoteRpsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarNfsePorRps">
+      <wsdl:input message="ii:ConsultarNfsePorRpsRequest"/>
+      <wsdl:output message="ii:ConsultarNfsePorRpsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarNfse">
+      <wsdl:input message="ii:ConsultarNfseRequest"/>
+      <wsdl:output message="ii:ConsultarNfseResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLoteRps">
+      <wsdl:input message="ii:ConsultarLoteRpsRequest"/>
+      <wsdl:output message="ii:ConsultarLoteRpsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarNfse">
+      <wsdl:input message="ii:CancelarNfseRequest"/>
+      <wsdl:output message="ii:CancelarNfseResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IssIntelBinding" type="ii:IssIntelPort">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"/>
+    <wsdl:operation name="RecepcionarLoteRps">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/RecepcionarLoteRps" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarSituacaoLoteRps">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/ConsultarSituacaoLoteRps" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarNfsePorRps">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/ConsultarNfsePorRps" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarNfse">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/ConsultarNfse" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarLoteRps">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/ConsultarLoteRps" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelarNfse">
+      <soap12:operation soapAction="http://nfse.local/webservice/index/producao/CancelarNfse" style="rpc"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IssIntelService">
+    <wsdl:port name="IssIntelPort" binding="ii:IssIntelBinding">
+      <soap12:address location="http://nfse.local/webservice/index/producao"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
